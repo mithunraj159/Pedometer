@@ -15,6 +15,8 @@
 		D423305524AC03CE0094853F /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D423305324AC03CE0094853F /* LaunchScreen.storyboard */; };
 		D423306024AC03CE0094853F /* PedometerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D423305F24AC03CE0094853F /* PedometerTests.swift */; };
 		D423306B24AC03CE0094853F /* PedometerUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D423306A24AC03CE0094853F /* PedometerUITests.swift */; };
+		D4255FCF24AD0B0F007F8A20 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4255FCE24AD0B0F007F8A20 /* Constants.swift */; };
+		D4255FD124AD0BFD007F8A20 /* PedometerLogic.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4255FD024AD0BFD007F8A20 /* PedometerLogic.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -49,6 +51,8 @@
 		D423306624AC03CE0094853F /* PedometerUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = PedometerUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		D423306A24AC03CE0094853F /* PedometerUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PedometerUITests.swift; sourceTree = "<group>"; };
 		D423306C24AC03CE0094853F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		D4255FCE24AD0B0F007F8A20 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
+		D4255FD024AD0BFD007F8A20 /* PedometerLogic.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PedometerLogic.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -99,9 +103,11 @@
 		D423304724AC03CD0094853F /* Pedometer */ = {
 			isa = PBXGroup;
 			children = (
+				D4255FCD24AD0AF5007F8A20 /* Constants */,
 				D423304824AC03CD0094853F /* AppDelegate.swift */,
 				D423304A24AC03CD0094853F /* SceneDelegate.swift */,
 				D423304C24AC03CD0094853F /* ViewController.swift */,
+				D4255FD024AD0BFD007F8A20 /* PedometerLogic.swift */,
 				D423304E24AC03CD0094853F /* Main.storyboard */,
 				D423305124AC03CE0094853F /* Assets.xcassets */,
 				D423305324AC03CE0094853F /* LaunchScreen.storyboard */,
@@ -126,6 +132,14 @@
 				D423306C24AC03CE0094853F /* Info.plist */,
 			);
 			path = PedometerUITests;
+			sourceTree = "<group>";
+		};
+		D4255FCD24AD0AF5007F8A20 /* Constants */ = {
+			isa = PBXGroup;
+			children = (
+				D4255FCE24AD0B0F007F8A20 /* Constants.swift */,
+			);
+			path = Constants;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -262,6 +276,8 @@
 				D423304D24AC03CD0094853F /* ViewController.swift in Sources */,
 				D423304924AC03CD0094853F /* AppDelegate.swift in Sources */,
 				D423304B24AC03CD0094853F /* SceneDelegate.swift in Sources */,
+				D4255FD124AD0BFD007F8A20 /* PedometerLogic.swift in Sources */,
+				D4255FCF24AD0B0F007F8A20 /* Constants.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -437,6 +453,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 77C365UNFW;
 				INFOPLIST_FILE = Pedometer/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -455,6 +472,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 77C365UNFW;
 				INFOPLIST_FILE = Pedometer/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
