@@ -20,4 +20,8 @@ struct Constants {
         static let startTitle = "Start"
         static let stopTitle = "Stop"
     }
+    
+    struct GeneralKeywords {
+        static let notAvailable = "Not Available"
+    }
 }
