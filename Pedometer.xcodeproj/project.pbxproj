@@ -17,6 +17,7 @@
 		D423306B24AC03CE0094853F /* PedometerUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D423306A24AC03CE0094853F /* PedometerUITests.swift */; };
 		D4255FCF24AD0B0F007F8A20 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4255FCE24AD0B0F007F8A20 /* Constants.swift */; };
 		D4255FD124AD0BFD007F8A20 /* PedometerLogic.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4255FD024AD0BFD007F8A20 /* PedometerLogic.swift */; };
+		D42B130D24AE6CD600F7EC6D /* TimerFunctions.swift in Sources */ = {isa = PBXBuildFile; fileRef = D42B130C24AE6CD600F7EC6D /* TimerFunctions.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -53,6 +54,7 @@
 		D423306C24AC03CE0094853F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		D4255FCE24AD0B0F007F8A20 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		D4255FD024AD0BFD007F8A20 /* PedometerLogic.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PedometerLogic.swift; sourceTree = "<group>"; };
+		D42B130C24AE6CD600F7EC6D /* TimerFunctions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimerFunctions.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -112,6 +114,7 @@
 				D423305124AC03CE0094853F /* Assets.xcassets */,
 				D423305324AC03CE0094853F /* LaunchScreen.storyboard */,
 				D423305624AC03CE0094853F /* Info.plist */,
+				D42B130C24AE6CD600F7EC6D /* TimerFunctions.swift */,
 			);
 			path = Pedometer;
 			sourceTree = "<group>";
@@ -274,6 +277,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				D423304D24AC03CD0094853F /* ViewController.swift in Sources */,
+				D42B130D24AE6CD600F7EC6D /* TimerFunctions.swift in Sources */,
 				D423304924AC03CD0094853F /* AppDelegate.swift in Sources */,
 				D423304B24AC03CD0094853F /* SceneDelegate.swift in Sources */,
 				D4255FD124AD0BFD007F8A20 /* PedometerLogic.swift in Sources */,

@@ -69,14 +69,14 @@ class PedometerLogic {
             return String(format: "%@: %02.2f m/s \n\t\t %02i:%02i min/mi",title,pace,minutes,seconds)
         }
          
-    func computedAvgPace()-> Double {
+   /* func computedAvgPace()-> Double {
         if let distance = self.distance{
             pace = distance / timeElapsed
             return pace
         } else {
             return 0.0
         }
-    }
+    }*/
      
     func miles(meters:Double)-> Double{
             let mile = 0.000621371192
@@ -101,36 +101,6 @@ class PedometerLogic {
         timeElapsed += 1.0
         delegate?.updateUI(numberOfSteps: self.numberOfSteps, distance: self.distance, averagePace: self.averagePace, pace: self.pace, timeElapsed: self.timeElapsed)
        }
-       
-       /*func displayPedometerData(){
-           timeElapsed += 1.0
-           timeLabel.text = "On: " + timeIntervalFormat(interval: timeElapsed)
-           //Number of steps
-           if let numberOfSteps = self.numberOfSteps{
-               stepsLabel.text = String(format:"Steps: %i",numberOfSteps)
-           }
-            
-           //distance
-           if let distance = self.distance{
-               distanceLabel.text = String(format:"Distance: %02.02f meters,\n %02.02f mi",distance,miles(meters: distance))
-           } else {
-               distanceLabel.text = "Distance: N/A"
-           }
-            
-           //average pace
-           if let averagePace = self.averagePace{
-               averagePaceLabel.text = paceString(title: "Avg Pace", pace: averagePace)
-           } else {
-               averagePaceLabel.text =  paceString(title: "Avg Comp Pace", pace: computedAvgPace())
-           }
-            
-           //pace
-           if let pace = self.pace {
-               paceLabel.text = paceString(title: "Pace:", pace: pace)
-           } else {
-               paceLabel.text =  paceString(title: "Avg Comp Pace", pace: computedAvgPace())
-           }
-       }*/
     
     func pedoMeterStartUpdates() {
         pedometer = CMPedometer()
