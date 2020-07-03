@@ -16,8 +16,6 @@ protocol PedometerLogicDelegate {
 
 class PedometerLogic {
     
-    var timer = Timer()
-    let timerInterval = 1.0
     var timeElapsed: TimeInterval = 0.0
     
     var numberOfSteps: Int! = 0
@@ -26,81 +24,34 @@ class PedometerLogic {
     var pace: Double! = 0.0
     
     var pedometer = CMPedometer()
+    var timerFunctions = TimerFunctions()
     
     var delegate: PedometerLogicDelegate?
-        
+    
     func startStopButtonUIUpdation(sender: UIButton) {
         if sender.titleLabel?.text == Constants.ButtonTitle.startTitle{
             //Start the pedometer
-           //Toggle the UI to on state
-            startTimer()
+            //Toggle the UI to on state
+            timerFunctions.delegate = self
+            timerFunctions.startTimer()
             pedoMeterStartUpdates()
             sender.setTitle(Constants.ButtonTitle.stopTitle, for: .normal)
             sender.backgroundColor = Constants.ButtonColors.stopButtonColor
         } else {
-           //Stop the pedometer
-           //Toggle the UI to off state
+            //Stop the pedometer
+            //Toggle the UI to off state
             pedometer.stopUpdates()
-            stopTimer()
+            timerFunctions.stopTimer()
             sender.backgroundColor = Constants.ButtonColors.startButtonColor
             sender.setTitle(Constants.ButtonTitle.startTitle, for: .normal)
         }
     }
     
-    // MARK:- Conversion Functions
-    // convert seconds to hh:mm:ss as a string
-        func timeIntervalFormat(interval:TimeInterval)-> String{
-            var seconds = Int(interval + 0.5) //round up seconds
-            let hours = seconds / 3600
-            let minutes = (seconds / 60) % 60
-            seconds = seconds % 60
-            return String(format:"%02i:%02i:%02i",hours,minutes,seconds)
-        }
-        // convert a pace in meters per second to a string with
-        // the metric m/s and the Imperial minutes per mile
-        func paceString(title:String,pace:Double) -> String{
-            var minPerMile = 0.0
-            let factor = 26.8224 //conversion factor
-            if pace != 0 {
-                minPerMile = factor / pace
-            }
-            let minutes = Int(minPerMile)
-            let seconds = Int(minPerMile * 60) % 60
-            return String(format: "%@: %02.2f m/s \n\t\t %02i:%02i min/mi",title,pace,minutes,seconds)
-        }
-         
-   /* func computedAvgPace()-> Double {
-        if let distance = self.distance{
-            pace = distance / timeElapsed
-            return pace
-        } else {
-            return 0.0
-        }
-    }*/
-     
-    func miles(meters:Double)-> Double{
-            let mile = 0.000621371192
-            return meters * mile
-        }
+    func triggerViewControllerDelegate() {
+        timeElapsed += 1.0
+        delegate?.updateUI(numberOfSteps: self.numberOfSteps, distance: self.distance, averagePace: self.averagePace, pace: self.pace, timeElapsed: self.timeElapsed)
+    }
     
-    //MARK: - timer functions
-    func startTimer(){
-           if timer.isValid { timer.invalidate() }
-           timer = Timer.scheduledTimer(timeInterval: timerInterval,target: self,selector: #selector(timerAction(timer:)) ,userInfo: nil,repeats: true)
-       }
-        
-       func stopTimer(){
-           timer.invalidate()
-           //displayPedometerData()
-        timeElapsed += 1.0
-        delegate?.updateUI(numberOfSteps: self.numberOfSteps, distance: self.distance, averagePace: self.averagePace, pace: self.pace, timeElapsed: self.timeElapsed)
-       }
-        
-     @objc func timerAction(timer:Timer){
-           //displayPedometerData()
-        timeElapsed += 1.0
-        delegate?.updateUI(numberOfSteps: self.numberOfSteps, distance: self.distance, averagePace: self.averagePace, pace: self.pace, timeElapsed: self.timeElapsed)
-       }
     
     func pedoMeterStartUpdates() {
         pedometer = CMPedometer()
@@ -122,5 +73,14 @@ class PedometerLogic {
             }
         }
     }
-
+    
 }
+
+extension PedometerLogic: TimerFunctionsDelegate {
+    func triggerTheDelegateMethod() {
+        triggerViewControllerDelegate()
+    }
+    
+    
+}
+

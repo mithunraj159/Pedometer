@@ -35,6 +35,7 @@ class ViewController: UIViewController {
 extension ViewController {
     
     func initialValue() {
+        timeLabel.text = "00:00:00"
         stepsLabel.text = "Steps: \(Constants.GeneralKeywords.notAvailable)"
         distanceLabel.text = "Distance: \(Constants.GeneralKeywords.notAvailable)"
         averagePaceLabel.text =  "Average Pace: \(Constants.GeneralKeywords.notAvailable)"
@@ -43,18 +44,20 @@ extension ViewController {
     }
     
     func displayPedometerData(receivedNumberOfSteps: Int, receivedDistance: Double, receivedAveragePace: Double, receivePace: Double, receivedTimeElapsed: TimeInterval){
-        timeLabel.text = pedometerLogic.timeIntervalFormat(interval: receivedTimeElapsed)
+        
+        timeLabel.text = UnitConversion.timeIntervalFormat(interval: receivedTimeElapsed)
+        
         //Number of steps
-            stepsLabel.text = String(format:"Steps : %i",receivedNumberOfSteps)
-         
+        stepsLabel.text = String(format:"Steps : %i",receivedNumberOfSteps)
+        
         //distance
-        distanceLabel.text = String(format:"Distance: %02.02f meters,\n %02.02f mi",receivedDistance,pedometerLogic.miles(meters: receivedDistance))
-         
+        distanceLabel.text = String(format:"Distance: %02.02f meters,\n %02.02f mi",receivedDistance,UnitConversion.miles(meters: receivedDistance))
+        
         //average pace
-        averagePaceLabel.text = pedometerLogic.paceString(title: "Avg Pace", pace: receivedAveragePace)
-         
+        averagePaceLabel.text = UnitConversion.paceString(title: "Average Pace", pace: receivedAveragePace)
+        
         //pace
-        paceLabel.text = pedometerLogic.paceString(title: "Pace:", pace: receivePace)
+        paceLabel.text = UnitConversion.paceString(title: "Pace", pace: receivePace)
         
     }
 }
