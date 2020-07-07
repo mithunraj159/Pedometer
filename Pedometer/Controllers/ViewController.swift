@@ -8,6 +8,7 @@
 
 import UIKit
 import CoreMotion
+import CoreData
 
 class ViewController: UIViewController {
     @IBOutlet weak var timeLabel: UILabel!
@@ -18,12 +19,20 @@ class ViewController: UIViewController {
     @IBOutlet weak var startStopButton: UIButton!
     
     var pedometerLogic = PedometerLogic()
+    var workOutArray = [WorkOut]()
     
 
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
         initialValue()
+        
+        let myDate = Date()
+        print("date", Date())
+        print("startOfDate", myDate.startOfDay)
+        print("endOfDate", myDate.endOfDay)
+        pedometerLogic.getEarlierUpdates()
+        
     }
     
     @IBAction func didTapStartStopButtonAction(_ sender: UIButton) {
@@ -40,7 +49,7 @@ extension ViewController {
         distanceLabel.text = "Distance: \(Constants.GeneralKeywords.notAvailable)"
         averagePaceLabel.text =  "Average Pace: \(Constants.GeneralKeywords.notAvailable)"
         paceLabel.text =  "Pace: \(Constants.GeneralKeywords.notAvailable)"
-
+        
     }
     
     func displayPedometerData(receivedNumberOfSteps: Int, receivedDistance: Double, receivedAveragePace: Double, receivePace: Double, receivedTimeElapsed: TimeInterval){
@@ -60,12 +69,26 @@ extension ViewController {
         paceLabel.text = UnitConversion.paceString(title: "Pace", pace: receivePace)
         
     }
+    
 }
 
 extension ViewController: PedometerLogicDelegate {
     func updateUI(numberOfSteps: Int, distance: Double, averagePace: Double, pace: Double, timeElapsed: TimeInterval) {
         displayPedometerData(receivedNumberOfSteps: numberOfSteps, receivedDistance: distance, receivedAveragePace: averagePace, receivePace: pace, receivedTimeElapsed: timeElapsed)
     }
+    
+    func updateCoredataDetails() {
+        if let workOutArray = CoreDataFunctions.fetchWorkOut() {
+            self.workOutArray = workOutArray
+        }
+        print("workOutArray:", workOutArray.count)
+        
+       // fetchWorkOut()
+        
+        print("woroutArrayCount", workOutArray.count)
+        //print("woroutArraySteps", workOutArray[0].numberOfSteps)
+       }
+       
     
 }
 

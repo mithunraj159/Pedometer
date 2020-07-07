@@ -12,6 +12,7 @@ import CoreMotion
 
 protocol PedometerLogicDelegate {
     func updateUI(numberOfSteps: Int, distance: Double, averagePace: Double, pace: Double, timeElapsed: TimeInterval)
+    func updateCoredataDetails()
 }
 
 class PedometerLogic {
@@ -22,6 +23,8 @@ class PedometerLogic {
     var distance: Double! = 0.0
     var averagePace: Double! = 0.0
     var pace: Double! = 0.0
+    var startDate: String = ""
+    var endDate: String = ""
     
     var pedometer = CMPedometer()
     var timerFunctions = TimerFunctions()
@@ -35,6 +38,7 @@ class PedometerLogic {
             timerFunctions.delegate = self
             timerFunctions.startTimer()
             pedoMeterStartUpdates()
+            startDate = dateToStringConversion()
             sender.setTitle(Constants.ButtonTitle.stopTitle, for: .normal)
             sender.backgroundColor = Constants.ButtonColors.stopButtonColor
         } else {
@@ -42,9 +46,16 @@ class PedometerLogic {
             //Toggle the UI to off state
             pedometer.stopUpdates()
             timerFunctions.stopTimer()
+            endDate = dateToStringConversion()
+            CoreDataFunctions.addWorkOut(workOutNumberOfSteps: self.numberOfSteps, workOutDistance: self.distance, workOutAveragePace: self.averagePace, workOutDuration: self.timeElapsed, workOutStartDate: self.startDate, workOutEndDate: self.endDate)
             sender.backgroundColor = Constants.ButtonColors.startButtonColor
             sender.setTitle(Constants.ButtonTitle.startTitle, for: .normal)
         }
+    }
+    
+    func dateToStringConversion() -> String {
+        let currentDate = Date()
+        return (currentDate.toString(dateFormat: "dd MMMM yyyy, HH:mm"))
     }
     
     func triggerViewControllerDelegate() {
@@ -52,13 +63,17 @@ class PedometerLogic {
         delegate?.updateUI(numberOfSteps: self.numberOfSteps, distance: self.distance, averagePace: self.averagePace, pace: self.pace, timeElapsed: self.timeElapsed)
     }
     
+    func updateCoreDataDelegate() {
+        delegate?.updateCoredataDetails()
+    }
+    
     
     func pedoMeterStartUpdates() {
         pedometer = CMPedometer()
         pedometer.startUpdates(from: Date()) { (pedometerData, error) in
             if let pedData = pedometerData {
+                
                 self.numberOfSteps = Int(truncating: pedData.numberOfSteps)
-                //self.stepsLabel.text = "Steps:\(pedData.numberOfSteps)"
                 if let distance = pedData.distance{
                     self.distance = Double(truncating: distance)
                 }
@@ -69,9 +84,35 @@ class PedometerLogic {
                     self.pace = Double(truncating: currentPace)
                 }
             } else {
-                self.numberOfSteps = nil
+                self.numberOfSteps = 0
             }
         }
+    }
+    
+    func getEarlierUpdates() {
+        if CMPedometer.isStepCountingAvailable() {
+            print("Step counting is available...")
+            let calendar = Calendar.current
+            var toDate = Date()
+            var fromDate = calendar.startOfDay(for: toDate)
+            fromDate = calendar.date(byAdding: .hour, value: -24, to: fromDate)!
+            toDate = calendar.date(byAdding: .hour, value: 2, to: toDate)!
+            print("From date = \(fromDate)")
+            print("To date = \(toDate)")
+
+            pedometer.queryPedometerData(from: fromDate, to: toDate) { (data, error) in
+                print("Handler (data):")
+                print(data!)
+                guard let activityData = data, error == nil else {
+                    print("There was an error getting the data: \(error!)")
+                    return
+                }
+                DispatchQueue.main.async {
+                    print("Steps and distance: \(activityData.numberOfSteps) \(activityData.distance ?? -1)")
+                }
+            }
+        }
+        
     }
     
 }
@@ -79,6 +120,8 @@ class PedometerLogic {
 extension PedometerLogic: TimerFunctionsDelegate {
     func triggerTheDelegateMethod() {
         triggerViewControllerDelegate()
+        updateCoreDataDelegate()
+        
     }
     
     

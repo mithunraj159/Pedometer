@@ -24,4 +24,8 @@ struct Constants {
     struct GeneralKeywords {
         static let notAvailable = "Not Available"
     }
+    
+    struct TableValues {
+        static let cell = "Cell"
+    }
 }

@@ -19,6 +19,12 @@
 		D4255FD124AD0BFD007F8A20 /* PedometerLogic.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4255FD024AD0BFD007F8A20 /* PedometerLogic.swift */; };
 		D42B130F24AE6E1D00F7EC6D /* UnitConversion.swift in Sources */ = {isa = PBXBuildFile; fileRef = D42B130E24AE6E1D00F7EC6D /* UnitConversion.swift */; };
 		D42B131324AE89F700F7EC6D /* TimerFunctions.swift in Sources */ = {isa = PBXBuildFile; fileRef = D42B131224AE89F700F7EC6D /* TimerFunctions.swift */; };
+		D42FBC0824B38C030021A07C /* ListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D42FBC0724B38C030021A07C /* ListViewController.swift */; };
+		D42FBC0B24B38D170021A07C /* Cell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D42FBC0A24B38D170021A07C /* Cell.swift */; };
+		D42FBC0D24B3AB9E0021A07C /* DateExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = D42FBC0C24B3AB9E0021A07C /* DateExtension.swift */; };
+		D488202124AFF65A0087AE5D /* Pedometer.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = D488201F24AFF65A0087AE5D /* Pedometer.xcdatamodeld */; };
+		D488202324AFF7270087AE5D /* PersistentStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = D488202224AFF7270087AE5D /* PersistentStorage.swift */; };
+		D488202524AFFBDA0087AE5D /* CoreDataFunctions.swift in Sources */ = {isa = PBXBuildFile; fileRef = D488202424AFFBDA0087AE5D /* CoreDataFunctions.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -57,6 +63,12 @@
 		D4255FD024AD0BFD007F8A20 /* PedometerLogic.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PedometerLogic.swift; sourceTree = "<group>"; };
 		D42B130E24AE6E1D00F7EC6D /* UnitConversion.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UnitConversion.swift; sourceTree = "<group>"; };
 		D42B131224AE89F700F7EC6D /* TimerFunctions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimerFunctions.swift; sourceTree = "<group>"; };
+		D42FBC0724B38C030021A07C /* ListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListViewController.swift; sourceTree = "<group>"; };
+		D42FBC0A24B38D170021A07C /* Cell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Cell.swift; sourceTree = "<group>"; };
+		D42FBC0C24B3AB9E0021A07C /* DateExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateExtension.swift; sourceTree = "<group>"; };
+		D488202024AFF65A0087AE5D /* Pedometer.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Pedometer.xcdatamodel; sourceTree = "<group>"; };
+		D488202224AFF7270087AE5D /* PersistentStorage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PersistentStorage.swift; sourceTree = "<group>"; };
+		D488202424AFFBDA0087AE5D /* CoreDataFunctions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataFunctions.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -110,14 +122,19 @@
 				D4255FCD24AD0AF5007F8A20 /* Constants */,
 				D423304824AC03CD0094853F /* AppDelegate.swift */,
 				D423304A24AC03CD0094853F /* SceneDelegate.swift */,
-				D423304C24AC03CD0094853F /* ViewController.swift */,
+				D42FBC0624B38BC40021A07C /* Controllers */,
+				D42FBC0924B38CF20021A07C /* TableViewCells */,
 				D4255FD024AD0BFD007F8A20 /* PedometerLogic.swift */,
 				D42B130E24AE6E1D00F7EC6D /* UnitConversion.swift */,
 				D42B131224AE89F700F7EC6D /* TimerFunctions.swift */,
+				D488202424AFFBDA0087AE5D /* CoreDataFunctions.swift */,
+				D42FBC0C24B3AB9E0021A07C /* DateExtension.swift */,
 				D423304E24AC03CD0094853F /* Main.storyboard */,
 				D423305124AC03CE0094853F /* Assets.xcassets */,
 				D423305324AC03CE0094853F /* LaunchScreen.storyboard */,
 				D423305624AC03CE0094853F /* Info.plist */,
+				D488202224AFF7270087AE5D /* PersistentStorage.swift */,
+				D488201F24AFF65A0087AE5D /* Pedometer.xcdatamodeld */,
 			);
 			path = Pedometer;
 			sourceTree = "<group>";
@@ -146,6 +163,23 @@
 				D4255FCE24AD0B0F007F8A20 /* Constants.swift */,
 			);
 			path = Constants;
+			sourceTree = "<group>";
+		};
+		D42FBC0624B38BC40021A07C /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				D423304C24AC03CD0094853F /* ViewController.swift */,
+				D42FBC0724B38C030021A07C /* ListViewController.swift */,
+			);
+			path = Controllers;
+			sourceTree = "<group>";
+		};
+		D42FBC0924B38CF20021A07C /* TableViewCells */ = {
+			isa = PBXGroup;
+			children = (
+				D42FBC0A24B38D170021A07C /* Cell.swift */,
+			);
+			path = TableViewCells;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -282,7 +316,13 @@
 				D423304D24AC03CD0094853F /* ViewController.swift in Sources */,
 				D423304924AC03CD0094853F /* AppDelegate.swift in Sources */,
 				D423304B24AC03CD0094853F /* SceneDelegate.swift in Sources */,
+				D488202324AFF7270087AE5D /* PersistentStorage.swift in Sources */,
+				D488202124AFF65A0087AE5D /* Pedometer.xcdatamodeld in Sources */,
+				D42FBC0D24B3AB9E0021A07C /* DateExtension.swift in Sources */,
+				D42FBC0B24B38D170021A07C /* Cell.swift in Sources */,
+				D42FBC0824B38C030021A07C /* ListViewController.swift in Sources */,
 				D4255FD124AD0BFD007F8A20 /* PedometerLogic.swift in Sources */,
+				D488202524AFFBDA0087AE5D /* CoreDataFunctions.swift in Sources */,
 				D42B131324AE89F700F7EC6D /* TimerFunctions.swift in Sources */,
 				D4255FCF24AD0B0F007F8A20 /* Constants.swift in Sources */,
 				D42B130F24AE6E1D00F7EC6D /* UnitConversion.swift in Sources */,
@@ -616,6 +656,19 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		D488201F24AFF65A0087AE5D /* Pedometer.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				D488202024AFF65A0087AE5D /* Pedometer.xcdatamodel */,
+			);
+			currentVersion = D488202024AFF65A0087AE5D /* Pedometer.xcdatamodel */;
+			path = Pedometer.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
 	};
 	rootObject = D423303D24AC03CD0094853F /* Project object */;
 }
